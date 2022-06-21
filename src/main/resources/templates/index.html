@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <!-- Head -->
+    <div th:replace="fragrams/header :: head" />
 <body>
+
+    <!-- Navbar -->
+    <div th:replace="fragrams/nav :: nav" />
+
+    <!-- Header -->
+    <header class="bg-dark py-5">
+        <div class="container px-5 vh-100">
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-8">
+                    <div class="text-center my-5">
+                        <h1 class="display-4 fw-bolder text-white mb-2">Testing HomePage</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Footer -->
+    <div th:replace="fragrams/footer :: footer" />
 
 </body>
 </html>
