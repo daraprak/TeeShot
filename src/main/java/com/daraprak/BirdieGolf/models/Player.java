@@ -30,11 +30,17 @@ public class Player {
     @NonNull
     String password;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH}, fetch = FetchType.EAGER)
-    @JoinTable(name = "players_tournaments",
-            joinColumns = @JoinColumn(name = "player_email"),
-            inverseJoinColumns = @JoinColumn(name = "tournaments_id"))
-    private Set<Tournament> tournaments = new LinkedHashSet<>();
+//    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH}, fetch = FetchType.EAGER)
+//    @JoinTable(name = "players_tournaments",
+//            joinColumns = @JoinColumn(name = "player_email"),
+//            inverseJoinColumns = @JoinColumn(name = "tournaments_id"))
+//    private Set<Tournament> tournaments = new LinkedHashSet<>();
+
+//    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+//    @JoinTable(name = "players_clubs",
+//            joinColumns = @JoinColumn(name = "player_email"),
+//            inverseJoinColumns = @JoinColumn(name = "clubs_manufacturer"))
+//    private Set<Club> clubs = new LinkedHashSet<>();
 
     @Override
     public boolean equals(Object o) {

@@ -1,5 +1,6 @@
 package com.daraprak.BirdieGolf.services;
 
+import com.daraprak.BirdieGolf.dao.ClubRepository;
 import com.daraprak.BirdieGolf.dao.PlayerRepository;
 import com.daraprak.BirdieGolf.dao.TournamentRepository;
 import com.daraprak.BirdieGolf.models.Tournament;
@@ -21,11 +22,13 @@ public class TournamentService {
 
     PlayerRepository playerRepository;
     TournamentRepository tournamentRepository;
+    ClubRepository clubRepository;
 
     @Autowired
-    public TournamentService(PlayerRepository playerRepository, TournamentRepository tournamentRepository) {
+    public TournamentService(PlayerRepository playerRepository, TournamentRepository tournamentRepository, ClubRepository clubRepository) {
         this.playerRepository = playerRepository;
         this.tournamentRepository = tournamentRepository;
+        this.clubRepository = clubRepository;
     }
 
     public List<Tournament> findAll() {

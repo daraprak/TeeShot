@@ -3,8 +3,7 @@ package com.daraprak.BirdieGolf.services;
 import com.daraprak.BirdieGolf.dao.ClubRepository;
 import com.daraprak.BirdieGolf.dao.PlayerRepository;
 import com.daraprak.BirdieGolf.dao.TournamentRepository;
-import com.daraprak.BirdieGolf.models.Player;
-import com.daraprak.BirdieGolf.models.Tournament;
+import com.daraprak.BirdieGolf.models.Club;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
@@ -20,39 +19,37 @@ import java.util.NoSuchElementException;
 @Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Transactional(rollbackOn = {DataAccessException.class})
-public class PlayerService {
+public class ClubService {
 
     PlayerRepository playerRepository;
     TournamentRepository tournamentRepository;
     ClubRepository clubRepository;
 
     @Autowired
-    public PlayerService(PlayerRepository playerRepository, TournamentRepository tournamentRepository, ClubRepository clubRepository) {
+    public ClubService(PlayerRepository playerRepository, TournamentRepository tournamentRepository, ClubRepository clubRepository) {
         this.playerRepository = playerRepository;
         this.tournamentRepository = tournamentRepository;
         this.clubRepository = clubRepository;
     }
 
-    public List<Player> findAll() {
-        return playerRepository.findAll();
+    public List<Club> findAll() {
+        return clubRepository.findAll();
     }
 
-    @Transactional(rollbackOn = {NoSuchElementException.class})
-    public Player findByEmail(String email) throws NoSuchElementException {
-        return playerRepository.findById(email).orElseThrow();
+    public Club save(Club club) {
+        return clubRepository.save(club);
     }
 
-    public void save(Player player) {
-        playerRepository.save(player);
+    public Iterable<Club> findClubsByManufacturer(String manufacturer) {
+        return clubRepository.findClubsByManufacturer(manufacturer);
     }
 
-    public void delete(Player player) {
-        playerRepository.delete(player);
+    public Iterable<Club> findClubsByModel(String model) {
+        return clubRepository.findClubsByModel(model);
     }
 
-    @Transactional(rollbackOn = {NoSuchElementException.class})
-    public void addTournament(String email, Tournament tournament) {
-
+    public Iterable<Club> findClubsByType(String type) {
+        return clubRepository.findClubsByType(type);
     }
 
 }
