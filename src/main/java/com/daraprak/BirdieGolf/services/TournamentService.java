@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @Slf4j
@@ -33,6 +34,19 @@ public class TournamentService {
 
     public List<Tournament> findAll() {
         return tournamentRepository.findAll();
+    }
+
+    @Transactional(rollbackOn = {NoSuchElementException.class})
+    public Tournament findById(int id) throws NoSuchElementException {
+        return tournamentRepository.findById(id).orElseThrow();
+    }
+
+    public void save(Tournament tournament) {
+        tournamentRepository.save(tournament);
+    }
+
+    public void delete(Tournament tournament) {
+        tournamentRepository.delete(tournament);
     }
 
 }

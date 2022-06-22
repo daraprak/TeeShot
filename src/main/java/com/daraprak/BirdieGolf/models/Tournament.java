@@ -33,8 +33,15 @@ public class Tournament {
     @NonNull
     String course;
 
-//    @ManyToMany(mappedBy = "tournaments", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH}, fetch = FetchType.EAGER)
-//    private Set<Player> players = new LinkedHashSet<>();
+    @ToString.Exclude
+    @ManyToMany(mappedBy = "tournaments", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH}, fetch = FetchType.EAGER)
+    private Set<Player> players = new LinkedHashSet<>();
+
+    // Helper Method
+    public void addPlayer(Player player) {
+        players.add(player);
+        player.getTournaments().add(this);
+    }
 
     @Override
     public boolean equals(Object o) {

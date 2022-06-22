@@ -11,7 +11,6 @@ import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@RequiredArgsConstructor
 @Getter
 @Setter
 @ToString
@@ -22,6 +21,7 @@ import java.util.Set;
 public class Player {
 
     @Id
+    @NonNull
     String email;
     @NonNull
     String firstName;
@@ -30,17 +30,33 @@ public class Player {
     @NonNull
     String password;
 
-//    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH}, fetch = FetchType.EAGER)
-//    @JoinTable(name = "players_tournaments",
-//            joinColumns = @JoinColumn(name = "player_email"),
-//            inverseJoinColumns = @JoinColumn(name = "tournaments_id"))
-//    private Set<Tournament> tournaments = new LinkedHashSet<>();
+    @ToString.Exclude
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH}, fetch = FetchType.EAGER)
+    @JoinTable(name = "players_tournaments",
+            joinColumns = @JoinColumn(name = "player_email"),
+            inverseJoinColumns = @JoinColumn(name = "tournaments_id"))
+    private Set<Tournament> tournaments = new LinkedHashSet<>();
+
+    public Player(@NonNull String email, @NonNull String firstName, @NonNull String lastName, @NonNull String password) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+    }
+
+
 
 //    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 //    @JoinTable(name = "players_clubs",
 //            joinColumns = @JoinColumn(name = "player_email"),
 //            inverseJoinColumns = @JoinColumn(name = "clubs_manufacturer"))
 //    private Set<Club> clubs = new LinkedHashSet<>();
+
+    // Helper Method
+    public void addTournament(Tournament tournament) {
+        tournaments.add(tournament);
+        tournament.getPlayers().add(this);
+    }
 
     @Override
     public boolean equals(Object o) {

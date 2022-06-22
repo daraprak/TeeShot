@@ -10,6 +10,7 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -52,7 +53,14 @@ public class PlayerService {
 
     @Transactional(rollbackOn = {NoSuchElementException.class})
     public void addTournament(String email, Tournament tournament) {
+        Player player = playerRepository.findById(email).orElseThrow();
+        tournament = tournamentRepository.save(tournament);
+        player.addTournament(tournament);
+        playerRepository.save(player);
+    }
 
+    public List<Player> findAllSortedBy(Sort sort) {
+        return playerRepository.findAll(sort);
     }
 
 }
