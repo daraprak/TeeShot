@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <!-- Head -->
+    <div th:replace="fragrams/header :: head" />
+<body>
+
+    <!-- Navbar -->
+    <div th:replace="fragrams/nav :: nav" />
+
+    <section class="login">
+        <div class="container vh-100 my-5 py-5">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div  th:if="${param.error}" class="error text-warning">
+                        Invalid username and password.
+                    </div>
+                    <div  th:if="${param.logout}" class="error text-info">
+                        You have been logged out.
+                    </div>
+
+                    <!-- Login Form -->
+                    <form th:action="@{/login/authenticate}" method="post">
+                        <div class="form-check my-5">
+                            <input type="text" name="username" class="form-control" id="username" aria-describedby="usernamehelp" placeholder="Enter Email">
+                        </div>
+                        <div class="form-check my-5">
+                            <input type="password" name="password" class="form-control" id="password" placeholder="Enter Password">
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="login-button">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div th:replace="fragrams/footer :: footer" />
+
+</body>
+</html>
