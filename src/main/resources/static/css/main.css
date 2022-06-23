@@ -1,0 +1,68 @@
+h1 {
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: white;
+}
+
+h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 1.4rem;
+    font-weight: 800;
+}
+
+h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+h5 {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #1d1d1d;
+}
+
+h6 {
+    color: #d8d8d8;
+}
+
+button:hover {
+    background-color: #3a3833;
+}
+
+/* Index Page */
+
+header {
+    background-image: url("/images/golfbackground.jpg");
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+register {
+    font-size: 0.8rem;
+    font-weight: 700;
+    outline: none;
+    border: 1px solid #d9d9d9;
+    background-color: transparent;
+    color: aliceblue;
+    padding: 13px 30px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.3s ease;
+}
+
+/* Login Page */
+
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
