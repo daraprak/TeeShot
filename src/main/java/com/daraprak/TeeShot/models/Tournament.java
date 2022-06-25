@@ -1,13 +1,13 @@
-package com.daraprak.BirdieGolf.models;
+package com.daraprak.TeeShot.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
-import java.util.LinkedHashSet;
 import java.util.Objects;
-import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,43 +17,33 @@ import java.util.Set;
 @ToString
 @Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Entity
 @Table(name = "tournaments")
+@Entity
 public class Tournament {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     @NonNull
-    String name;
-    @NonNull
     String date;
     @NonNull
-    String time;
+    String name;
     @NonNull
     String course;
-
-    @ToString.Exclude
-    @ManyToMany(mappedBy = "tournaments", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH}, fetch = FetchType.EAGER)
-    private Set<Player> players = new LinkedHashSet<>();
-
-    // Helper Method
-    public void addPlayer(Player player) {
-        players.add(player);
-        player.getTournaments().add(this);
-    }
+    @NonNull
+    double purse;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Tournament that = (Tournament) o;
-        return id == that.id && name.equals(that.name) && date.equals(that.date) && time.equals(that.time) && course.equals(that.course);
+        return id == that.id && Double.compare(that.purse, purse) == 0 && date.equals(that.date) && course.equals(that.course);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, date, time, course);
+        return Objects.hash(id, date, course, purse);
     }
 
 }

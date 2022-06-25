@@ -1,16 +1,13 @@
-package com.daraprak.BirdieGolf.services;
+package com.daraprak.TeeShot.services;
 
-import com.daraprak.BirdieGolf.dao.ClubRepository;
-import com.daraprak.BirdieGolf.dao.PlayerRepository;
-import com.daraprak.BirdieGolf.dao.TournamentRepository;
-import com.daraprak.BirdieGolf.models.Player;
-import com.daraprak.BirdieGolf.models.Tournament;
+import com.daraprak.TeeShot.dao.PlayerRepository;
+import com.daraprak.TeeShot.dao.TournamentRepository;
+import com.daraprak.TeeShot.models.Player;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -25,17 +22,19 @@ public class PlayerService {
 
     PlayerRepository playerRepository;
     TournamentRepository tournamentRepository;
-    ClubRepository clubRepository;
 
     @Autowired
-    public PlayerService(PlayerRepository playerRepository, TournamentRepository tournamentRepository, ClubRepository clubRepository) {
+    public PlayerService(PlayerRepository playerRepository, TournamentRepository tournamentRepository) {
         this.playerRepository = playerRepository;
         this.tournamentRepository = tournamentRepository;
-        this.clubRepository = clubRepository;
     }
 
     public List<Player> findAll() {
         return playerRepository.findAll();
+    }
+
+    public List<Player> findAllWinners() {
+        return playerRepository.findAllWinners();
     }
 
     @Transactional(rollbackOn = {NoSuchElementException.class})
@@ -43,24 +42,12 @@ public class PlayerService {
         return playerRepository.findById(email).orElseThrow();
     }
 
-    public void save(Player player) {
+    public void saveOrUpdate(Player player) {
         playerRepository.save(player);
     }
 
-    public void delete(Player player) {
+    public void deletePlayer(Player player) {
         playerRepository.delete(player);
-    }
-
-    @Transactional(rollbackOn = {NoSuchElementException.class})
-    public void addTournament(String email, Tournament tournament) {
-        Player player = playerRepository.findById(email).orElseThrow();
-        tournament = tournamentRepository.save(tournament);
-        player.addTournament(tournament);
-        playerRepository.save(player);
-    }
-
-    public List<Player> findAllSortedBy(Sort sort) {
-        return playerRepository.findAll(sort);
     }
 
 }

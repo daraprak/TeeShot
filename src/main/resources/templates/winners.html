@@ -62,14 +62,16 @@
                             <th scope="col">First Name</th>
                             <th scope="col">Last Name</th>
                             <th scope="col">Email</th>
+                            <th scope="col">Total Winnings</th>
                         </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="player: ${winners}">
-                                <td th:text="${player.firstName}"></td>
-                                <td th:text="${player.lastName}"></td>
-                                <th scope="row" th:text="${player.email}"></th>
-                            </tr>
+                        <tr th:each="player: ${winners}">
+                            <td scope="row" th:text="${player.firstName}"></td>
+                            <td th:text="${player.lastName}"></td>
+                            <th th:text="${player.email}"></th>
+                            <th th:text="${#numbers.formatCurrency(player.totalWinnings)}"></th>
+                        </tr>
                             </tbody>
                         </table>
                     </div>

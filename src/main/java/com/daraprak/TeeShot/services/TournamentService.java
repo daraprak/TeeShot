@@ -1,9 +1,8 @@
-package com.daraprak.BirdieGolf.services;
+package com.daraprak.TeeShot.services;
 
-import com.daraprak.BirdieGolf.dao.ClubRepository;
-import com.daraprak.BirdieGolf.dao.PlayerRepository;
-import com.daraprak.BirdieGolf.dao.TournamentRepository;
-import com.daraprak.BirdieGolf.models.Tournament;
+import com.daraprak.TeeShot.dao.PlayerRepository;
+import com.daraprak.TeeShot.dao.TournamentRepository;
+import com.daraprak.TeeShot.models.Tournament;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
@@ -23,13 +22,11 @@ public class TournamentService {
 
     PlayerRepository playerRepository;
     TournamentRepository tournamentRepository;
-    ClubRepository clubRepository;
 
     @Autowired
-    public TournamentService(PlayerRepository playerRepository, TournamentRepository tournamentRepository, ClubRepository clubRepository) {
+    public TournamentService(PlayerRepository playerRepository, TournamentRepository tournamentRepository) {
         this.playerRepository = playerRepository;
         this.tournamentRepository = tournamentRepository;
-        this.clubRepository = clubRepository;
     }
 
     public List<Tournament> findAll() {
@@ -41,12 +38,18 @@ public class TournamentService {
         return tournamentRepository.findById(id).orElseThrow();
     }
 
-    public void save(Tournament tournament) {
+    public void saveTournament(Tournament tournament) {
         tournamentRepository.save(tournament);
     }
 
-    public void delete(Tournament tournament) {
+    public void deleteTournament(Tournament tournament) {
         tournamentRepository.delete(tournament);
     }
+
+//    public Tournament findTournamentByName(String name) {
+//        return tournamentRepository.findByName(name).orElseThrow();
+//    }
+
+
 
 }
