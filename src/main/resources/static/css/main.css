@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
+
 h1 {
     font-size: 2.5rem;
     font-weight: 500;
@@ -29,8 +31,17 @@ h6 {
     color: #d8d8d8;
 }
 
+
+button {
+    cursor: pointer;
+}
+
 button:hover {
     background-color: #3a3833;
+}
+
+.btn a {
+    color: white;
 }
 
 /* Index Page */
@@ -46,23 +57,6 @@ header {
     align-items: flex-start;
 }
 
-register {
-    font-size: 0.8rem;
-    font-weight: 700;
-    outline: none;
-    border: 1px solid #d9d9d9;
-    background-color: transparent;
-    color: aliceblue;
-    padding: 13px 30px;
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: 0.3s ease;
-}
-
 /* Login Page */
 
-.login {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+/* Register Page */

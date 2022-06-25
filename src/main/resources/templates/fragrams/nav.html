@@ -6,9 +6,11 @@
 </head>
 <body>
 
-    <nav th:fragment="nav" class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <nav th:fragment="nav" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container px-5">
-            <a class="navbar-brand" th:href="@{/index}">BirdieGolf</a>
+            <a class="navbar-brand" th:href="@{/index}">
+                <img style="width: 50px; height: 50px" src="/images/teeshot.png">
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span><i id="bar" class="fa-solid fa-bars"></i></span>
             </button>
@@ -18,19 +20,10 @@
                         <a class="nav-link" th:href="@{/about}">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/tournaments}">Tournaments</a>
+                        <a class="nav-link" th:href="@{/players}">Winners</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#!">Drivers</a></li>
-                            <li><hr class="dropdown-divider" /></li>
-                            <li><a class="dropdown-item" href="#!">Irons</a></li>
-                            <li><hr class="dropdown-divider" /></li>
-                            <li><a class="dropdown-item" href="#!">Wedges</a></li>
-                            <li><hr class="dropdown-divider" /></li>
-                            <li><a class="dropdown-item" href="#!">Putters</a></li>
-                        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/tournaments}">Tournaments</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/login}">Log In</a>
@@ -39,11 +32,6 @@
                         <a class="nav-link" th:href="@{/register}">Sign Up</a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <button class="btn bg-light" type="submit">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </button>
-                </form>
             </div>
         </div>
     </nav>

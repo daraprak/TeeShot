@@ -8,13 +8,12 @@
     <div th:replace="fragrams/nav :: nav" />
 
     <!-- Header -->
-    <header class="bg-light py-5">
+    <header class="bg-light py-5" id="index">
         <div class="container px-5 vh-100">
             <div class="row gx-5 justify-content-center">
                 <div class="col-lg-8">
-                    <div class="text-center my-5">
-                        <h1>UPCOMING TOURNAMENTS</h1>
-                        <button class="register" th:href="@{/register}">Register Now</button>
+                    <div class="image my-5" style="position: relative; display: inline-block">
+                        <img style="position: absolute; z-index: 4; bottom: -275px; left: -300px;" src="/images/teeshot.png">
                     </div>
                 </div>
             </div>
