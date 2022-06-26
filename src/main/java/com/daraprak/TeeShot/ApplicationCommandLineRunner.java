@@ -51,11 +51,11 @@ public class ApplicationCommandLineRunner implements CommandLineRunner {
         playerService.saveOrUpdate(new Player(JIMID, "Jim", "Halpert", PASSWORD, true, 11000));
         playerService.saveOrUpdate(new Player(DARRYLID, "Darryl", "Philbin", PASSWORD, false));
 
-        tournamentService.saveTournament(new Tournament("June 12", "Cave Creek Open","Cave Creek Golf Course", 12000));
-        tournamentService.saveTournament(new Tournament("June 29", "Talking Stick Championship", "Talking Stick Golf Club", 20000));
-        tournamentService.saveTournament(new Tournament("July 17", "Biltmore Classic", "Arizona Biltmore Golf Club", 25000));
-        tournamentService.saveTournament(new Tournament("Aug 5", "GCU Championship", "Grand Canyon University Championship Golf Course", 16000));
-        tournamentService.saveTournament(new Tournament("Aug 27", "Aguila Open", "Aguila Golf Course", 11500));
+        tournamentService.saveUpdateTournament(new Tournament("June 12", "Cave Creek Open","Cave Creek Golf Course", 12000));
+        tournamentService.saveUpdateTournament(new Tournament("June 29", "Talking Stick Championship", "Talking Stick Golf Club", 20000));
+        tournamentService.saveUpdateTournament(new Tournament("July 17", "Biltmore Classic", "Arizona Biltmore Golf Club", 25000));
+        tournamentService.saveUpdateTournament(new Tournament("Aug 5", "GCU Championship", "Grand Canyon University Championship Golf Course", 16000));
+        tournamentService.saveUpdateTournament(new Tournament("Aug 27", "Aguila Open", "Aguila Golf Course", 11500));
 
     }
 }
