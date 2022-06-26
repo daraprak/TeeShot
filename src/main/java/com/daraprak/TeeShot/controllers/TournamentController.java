@@ -13,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -39,6 +40,20 @@ public class TournamentController {
     public String getAllTournaments(Model model) {
         model.addAttribute("tournaments", tournamentService.findAll());
         return "tournaments";
+    }
+
+    @GetMapping(value = "/tournamentform")
+    public String tournamentForm(Model model) {
+        model.addAttribute("tournament", new Tournament());
+        return "tournamentupdate";
+    }
+
+    @PostMapping("/saveupdatetournament")
+    public String saveUpdateTournament(RedirectAttributes model, @ModelAttribute("tournament") Tournament tournament) {
+        log.warn("Tournament tournament: " + tournament);
+        tournamentService.saveUpdateTournament(tournament);
+        model.addFlashAttribute("tournament", tournamentService.findById(tournament.getId()));
+        return "courseupdate";
     }
 
 }

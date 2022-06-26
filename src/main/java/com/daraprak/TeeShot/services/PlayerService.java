@@ -46,8 +46,4 @@ public class PlayerService {
         playerRepository.save(player);
     }
 
-    public void deletePlayer(Player player) {
-        playerRepository.delete(player);
-    }
-
 }

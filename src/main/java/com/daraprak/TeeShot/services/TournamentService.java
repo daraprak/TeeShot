@@ -38,7 +38,7 @@ public class TournamentService {
         return tournamentRepository.findById(id).orElseThrow();
     }
 
-    public void saveTournament(Tournament tournament) {
+    public void saveUpdateTournament(Tournament tournament) {
         tournamentRepository.save(tournament);
     }
 
