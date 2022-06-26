@@ -13,7 +13,7 @@ h2 {
 
 h3 {
     font-size: 1.4rem;
-    font-weight: 800;
+    font-weight: 500;
 }
 
 h4 {
@@ -44,9 +44,9 @@ button:hover {
     color: white;
 }
 
-/* Index Page */
+    /* Index Page */
 
-header {
+header .container {
     background-image: url("/images/golfbackground.jpg");
     width: 100%;
     height: 100vh;
@@ -57,6 +57,71 @@ header {
     align-items: flex-start;
 }
 
-/* Login Page */
+header .image {
+    display: flex;
+    justify-content: center;
+}
 
-/* Register Page */
+    /* About Page */
+
+section .bg-image {
+    background-image: url("/images/golfbackground.jpg");
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+section .social {
+    display: flex;
+    justify-content: center;
+    alight-items: center;
+    font-size: 2rem;
+}
+
+section .line {
+    background: black;
+}
+
+    /* Winners Page */
+
+section .bg-image {
+    background-image: url("/images/golfbackground.jpg");
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+    /* Tournaments Page */
+
+section .bg-image {
+    background-image: url("/images/golfbackground.jpg");
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+    /* Sign In Page */
+
+section .bg-image {
+    background-image: url("/images/golfbackground.jpg");
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
