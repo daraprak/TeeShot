@@ -1,13 +1,13 @@
-package com.daraprak.TeeShot;
+package com.daraprak.BirdieGolf;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TeeShotApplication {
+public class BirdieGolfApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TeeShotApplication.class, args);
+		SpringApplication.run(BirdieGolfApplication.class, args);
 	}
 
 }

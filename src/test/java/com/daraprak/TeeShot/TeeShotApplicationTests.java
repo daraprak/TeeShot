@@ -1,10 +1,10 @@
-package com.daraprak.TeeShot;
+package com.daraprak.BirdieGolf;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TeeShotApplicationTests {
+class BirdieGolfApplicationTests {
 
 	@Test
 	void contextLoads() {
