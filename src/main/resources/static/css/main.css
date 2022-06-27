@@ -99,7 +99,33 @@ section .bg-image {
     align-items: flex-start;
 }
 
+    /* Player's update Page */
+
+section .bg-image {
+    background-image: url("/images/golfbackground.jpg");
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
     /* Tournaments Page */
+
+section .bg-image {
+    background-image: url("/images/golfbackground.jpg");
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+    /* Tournaments Update Page */
 
 section .bg-image {
     background-image: url("/images/golfbackground.jpg");
