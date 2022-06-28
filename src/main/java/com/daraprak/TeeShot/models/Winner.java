@@ -15,8 +15,8 @@ import java.util.Objects;
 @Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "players")
-public class Player {
+@Table(name = "winners")
+public class Winner {
 
     @Id
     @NonNull
@@ -28,11 +28,11 @@ public class Player {
     @NonNull
     String password;
     @NonNull
-    boolean winner;
+    boolean winner = false;
     @NonNull
     double totalWinnings;
 
-    public Player(@NonNull String email, @NonNull String firstName, @NonNull String lastName, @NonNull String password, @NonNull boolean winner) {
+    public Winner(@NonNull String email, @NonNull String firstName, @NonNull String lastName, @NonNull String password, @NonNull boolean winner) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -44,8 +44,8 @@ public class Player {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Player player = (Player) o;
-        return winner == player.winner && Double.compare(player.totalWinnings, totalWinnings) == 0 && email.equals(player.email) && firstName.equals(player.firstName) && lastName.equals(player.lastName) && password.equals(player.password);
+        Winner winner1 = (Winner) o;
+        return winner == winner1.winner && Double.compare(winner1.totalWinnings, totalWinnings) == 0 && email.equals(winner1.email) && firstName.equals(winner1.firstName) && lastName.equals(winner1.lastName) && password.equals(winner1.password);
     }
 
     @Override

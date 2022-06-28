@@ -2,11 +2,11 @@ package com.daraprak.TeeShot;
 
 import com.daraprak.TeeShot.dao.TournamentRepository;
 import com.daraprak.TeeShot.models.Course;
-import com.daraprak.TeeShot.models.Player;
+import com.daraprak.TeeShot.models.Winner;
 import com.daraprak.TeeShot.models.TeeTime;
 import com.daraprak.TeeShot.models.Tournament;
 import com.daraprak.TeeShot.services.CourseService;
-import com.daraprak.TeeShot.services.PlayerService;
+import com.daraprak.TeeShot.services.WinnerService;
 import com.daraprak.TeeShot.services.TeeTimeService;
 import com.daraprak.TeeShot.services.TournamentService;
 import lombok.AccessLevel;
@@ -19,13 +19,14 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.Month;
 
 @Component
 @Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ApplicationCommandLineRunner implements CommandLineRunner {
 
-    PlayerService playerService;
+    WinnerService winnerService;
     TournamentService tournamentService;
     TournamentRepository tournamentRepository;
     CourseService courseService;
@@ -41,8 +42,8 @@ public class ApplicationCommandLineRunner implements CommandLineRunner {
     static final LocalTime TIME = LocalTime.of(6,00);
 
     @Autowired
-    public ApplicationCommandLineRunner(PlayerService playerService, TournamentService tournamentService, TournamentRepository tournamentRepository, CourseService courseService, TeeTimeService teeTimeService) {
-        this.playerService = playerService;
+    public ApplicationCommandLineRunner(WinnerService winnerService, TournamentService tournamentService, TournamentRepository tournamentRepository, CourseService courseService, TeeTimeService teeTimeService) {
+        this.winnerService = winnerService;
         this.tournamentService = tournamentService;
         this.tournamentRepository = tournamentRepository;
         this.courseService = courseService;
@@ -57,17 +58,17 @@ public class ApplicationCommandLineRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        playerService.saveOrUpdate(new Player(DARAID, "Dara", "Prak", PASSWORD, true,20000));
-        playerService.saveOrUpdate(new Player(MICHAELID, "Michael", "Scott", PASSWORD, true, 15000));
-        playerService.saveOrUpdate(new Player(DWIGHTID, "Dwight", "Schrute", PASSWORD, false));
-        playerService.saveOrUpdate(new Player(JIMID, "Jim", "Halpert", PASSWORD, true, 11000));
-        playerService.saveOrUpdate(new Player(DARRYLID, "Darryl", "Philbin", PASSWORD, false));
+        winnerService.saveOrUpdate(new Winner(DARAID, "Dara", "Prak", PASSWORD, true,20000));
+        winnerService.saveOrUpdate(new Winner(MICHAELID, "Michael", "Scott", PASSWORD, true, 15000));
+        winnerService.saveOrUpdate(new Winner(DWIGHTID, "Dwight", "Schrute", PASSWORD, false));
+        winnerService.saveOrUpdate(new Winner(JIMID, "Jim", "Halpert", PASSWORD, true, 11000));
+        winnerService.saveOrUpdate(new Winner(DARRYLID, "Darryl", "Philbin", PASSWORD, false));
 
-        tournamentService.saveUpdateTournament(new Tournament("June 12", "Cave Creek Open","Cave Creek Golf Course", 12000));
-        tournamentService.saveUpdateTournament(new Tournament("June 29", "Talking Stick Championship", "Talking Stick Golf Club", 20000));
-        tournamentService.saveUpdateTournament(new Tournament("July 17", "Biltmore Classic", "Arizona Biltmore Golf Club", 25000));
-        tournamentService.saveUpdateTournament(new Tournament("Aug 5", "GCU Championship", "Grand Canyon University Championship Golf Course", 16000));
-        tournamentService.saveUpdateTournament(new Tournament("Aug 27", "Aguila Open", "Aguila Golf Course", 11500));
+        tournamentService.saveUpdateTournament(new Tournament(LocalDate.of(2022, Month.JUNE, 12), "Cave Creek Open","Cave Creek Golf Course", 12000));
+        tournamentService.saveUpdateTournament(new Tournament(LocalDate.of(2022, Month.JUNE, 29), "Talking Stick Championship", "Talking Stick Golf Club", 20000));
+        tournamentService.saveUpdateTournament(new Tournament(LocalDate.of(2022, Month.JULY, 17), "Biltmore Classic", "Arizona Biltmore Golf Club", 25000));
+        tournamentService.saveUpdateTournament(new Tournament(LocalDate.of(2022, Month.AUGUST, 5), "GCU Championship", "Grand Canyon University Championship Golf Course", 16000));
+        tournamentService.saveUpdateTournament(new Tournament(LocalDate.of(2022, Month.AUGUST, 27), "Aguila Open", "Aguila Golf Course", 11500));
 
         courseService.saveOrUpdate(new Course("Desert Mirage Golf Course", 4, 35));
         courseService.saveOrUpdate(new Course("Peoria Pines Golf Course", 3, 40));
