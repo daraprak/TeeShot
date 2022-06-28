@@ -3,6 +3,7 @@ package com.daraprak.TeeShot.services;
 import com.daraprak.TeeShot.dao.CourseRepository;
 import com.daraprak.TeeShot.dao.TeeTimeRepository;
 import com.daraprak.TeeShot.models.Course;
+import com.daraprak.TeeShot.models.TeeTime;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
@@ -17,24 +18,27 @@ import java.util.List;
 @Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Transactional(rollbackOn = {DataAccessException.class})
-public class CourseService {
+public class TeeTimeService {
 
+    TeeTimeRepository teeTimeRepository;
     CourseRepository courseRepository;
 
-    public CourseService(CourseRepository courseRepository) {
+    @Autowired
+    public TeeTimeService(TeeTimeRepository teeTimeRepository, CourseRepository courseRepository) {
+        this.teeTimeRepository = teeTimeRepository;
         this.courseRepository = courseRepository;
     }
 
-    public List<Course> findAll() {
-        return courseRepository.findAll();
+    public List<TeeTime> findAll() {
+        return teeTimeRepository.findAll();
     }
 
-    public List<Course> findByCourse(String name) {
-        return courseRepository.findByCourse(name);
+    public void saveOrUpdate(TeeTime teeTime) {
+        teeTimeRepository.save(teeTime);
     }
 
-    public void saveOrUpdate(Course course) {
-        courseRepository.save(course);
+    public List<TeeTime> findTeeTimesByCourse(String name) {
+        return teeTimeRepository.findTeeTimesByCourse(name);
     }
 
 }

@@ -11,9 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TeeShotApplicationTests {
 
     @Test
-    @Disabled("Coming soon...")
     void contextLoads() {
-        fail("no tests yet.");
     }
 
 }
