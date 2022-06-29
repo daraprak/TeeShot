@@ -1,5 +1,6 @@
 package com.daraprak.TeeShot;
 
+import com.daraprak.TeeShot.dao.AuthGroupRepository;
 import com.daraprak.TeeShot.dao.TournamentRepository;
 import com.daraprak.TeeShot.models.*;
 import com.daraprak.TeeShot.services.CourseService;
@@ -28,6 +29,7 @@ public class ApplicationCommandLineRunner implements CommandLineRunner {
     TournamentRepository tournamentRepository;
     CourseService courseService;
     TeeTimeService teeTimeService;
+    AuthGroupRepository authGroupRepository;
 
     static final String PASSWORD = "password";
     static final String DARAID = "dara@gmail.com";
@@ -37,14 +39,17 @@ public class ApplicationCommandLineRunner implements CommandLineRunner {
     static final String DARRYLID = "darryl@gmail.com";
     static final LocalDate TODAY = LocalDate.now();
     static final LocalTime TIME = LocalTime.of(6,00);
+    static final  String ROLE_ADMIN = "ROLE_ADMIN";
+    static final  String ROLE_USER = "ROLE_USER";
 
     @Autowired
-    public ApplicationCommandLineRunner(PlayerService playerService, TournamentService tournamentService, TournamentRepository tournamentRepository, CourseService courseService, TeeTimeService teeTimeService) {
+    public ApplicationCommandLineRunner(PlayerService playerService, TournamentService tournamentService, TournamentRepository tournamentRepository, CourseService courseService, TeeTimeService teeTimeService, AuthGroupRepository authGroupRepository) {
         this.playerService = playerService;
         this.tournamentService = tournamentService;
         this.tournamentRepository = tournamentRepository;
         this.courseService = courseService;
-        this.teeTimeService =teeTimeService;
+        this.teeTimeService = teeTimeService;
+        this.authGroupRepository = authGroupRepository;
     }
 
     @PostConstruct
@@ -61,11 +66,11 @@ public class ApplicationCommandLineRunner implements CommandLineRunner {
         playerService.saveOrUpdate(new Player(JIMID, "Jim", "Halpert", PASSWORD, true, 11000));
         playerService.saveOrUpdate(new Player(DARRYLID, "Darryl", "Philbin", PASSWORD, false));
 
-//        authGroupRepository.save(new AuthGroup(DARAID, ROLE_ADMIN));
-//        authGroupRepository.save(new AuthGroup(MICHAELID, ROLE_ADMIN));
-//        authGroupRepository.save(new AuthGroup(DWIGHTID, ROLE_USER));
-//        authGroupRepository.save(new AuthGroup(JIMID, ROLE_USER));
-//        authGroupRepository.save(new AuthGroup(DARRYLID, ROLE_USER));
+        authGroupRepository.save(new AuthGroup(DARAID, ROLE_ADMIN));
+        authGroupRepository.save(new AuthGroup(MICHAELID, ROLE_ADMIN));
+        authGroupRepository.save(new AuthGroup(DWIGHTID, ROLE_USER));
+        authGroupRepository.save(new AuthGroup(JIMID, ROLE_USER));
+        authGroupRepository.save(new AuthGroup(DARRYLID, ROLE_USER));
 
         tournamentService.saveUpdateTournament(new Tournament(LocalDate.of(2022, Month.JUNE, 12), "Cave Creek Open","Cave Creek Golf Course", 12000));
         tournamentService.saveUpdateTournament(new Tournament(LocalDate.of(2022, Month.JUNE, 29), "Talking Stick Championship", "Talking Stick Golf Club", 20000));

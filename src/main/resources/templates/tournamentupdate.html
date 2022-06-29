@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
     <!-- Head -->
     <div th:replace="fragrams/header :: head" />
 <body>
@@ -19,19 +19,18 @@
                 </div>
                 <div class="row gx-5 justify-content-center">
                     <div class="col-lg-5">
-                        <p th:if="${player.email ne null}" class="text-warning">Persisted!</p>
-                        <form th:action="@{/players/playerform}"  autocomplete="off" method="post">
+                        <form th:action="@{/players/playerform}"  autocomplete="off" method="POST">
                             <div class="input-group mb-3">
-                                <input type="text" name="email" class="form-control" placeholder="Tournament Date" th:field="*{tournament.date}" />
+                                <input type="text" name="date" class="form-control" placeholder="Tournament Date" th:field="*{tournament.date}" />
                             </div>
                             <div class="input-group mb-3">
-                                <input type="text" name="firstName" class="form-control" placeholder="Tournament Name" th:field="*{tournament.name}" />
+                                <input type="text" name="name" class="form-control" placeholder="Tournament Name" th:field="*{tournament.name}" />
                             </div>
                             <div class="input-group mb-3">
-                                <input type="text" name="lastName" class="form-control" placeholder="Course Name" th:field="*{tournament.course}" />
+                                <input type="text" name="course" class="form-control" placeholder="Course Name" th:field="*{tournament.course}" />
                             </div>
                             <div class="input-group mb-3">
-                                <input type="text" name="totalWinnings" class="form-control" placeholder="Tournament Prize" th:field="*{tournament.purse}" />
+                                <input type="text" name="purse" class="form-control" placeholder="Tournament Prize" th:field="*{tournament.purse}" />
                             </div>
                             <div class="update-player-button">
                                 <button class="btn btn-primary" type="submit" id="button-addon2">Submit</button>

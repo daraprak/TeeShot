@@ -46,6 +46,7 @@ public class TournamentService {
         tournamentRepository.delete(tournament);
     }
 
+
 //    public Tournament findTournamentByName(String name) {
 //        return tournamentRepository.findByName(name).orElseThrow();
 //    }
