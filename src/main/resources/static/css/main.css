@@ -44,6 +44,10 @@ button:hover {
     color: white;
 }
 
+.navbar-nav .dropdown-menu {
+  position: static;
+}
+
     /* Index Page */
 
 header .container {
@@ -86,7 +90,7 @@ section .line {
     background: black;
 }
 
-    /* Winners Page */
+    /* players Page */
 
 section .bg-image {
     background-image: url("/images/golfbackground.jpg");
@@ -97,6 +101,12 @@ section .bg-image {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+}
+
+section .add-player-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
     /* Player's update Page */
@@ -112,6 +122,12 @@ section .bg-image {
     align-items: flex-start;
 }
 
+section .update-player-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
     /* Tournaments Page */
 
 section .bg-image {
@@ -123,6 +139,12 @@ section .bg-image {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+}
+
+section .add-tournament-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
     /* Tournaments Update Page */

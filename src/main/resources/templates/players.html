@@ -8,77 +8,79 @@
     <div th:replace="fragrams/nav :: nav" />
 
     <!-- Header -->
-    <header class="players vh-100 py-5 my-5 bg-light">
-        <div class="container px-5 vh-100">
-            <div class="row gx-5 justify-content-center">
-                <div class="col-lg-8">
-                    <div class="text-center my-5">
-                        <h1 class="display-4 fw-bolder text- mb-2">Players</h1>
+    <section class="winners vh-100 py-5 my-5 bg-light">
+        <div class="bg-image container px-5 vh-100">
+            <div class="container px-5 vh-100">
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="text-center my-5">
+                            <h1 class="display-4 fw-bolder text-light">Winners</h1>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="row gx-5 justify-content-center">
-                <div class="col-lg-10">
-                    <form th:action="@{players/findplayerusername}" autocomplete="off" method="post">
-                        <div class="input-group mb-3">
-                            <input type="text" name="email" class="form-control" placeholder="Player's Username" aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <button class="btn btn-info" type="submit" id="button-addon2">Find</button>
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-10">
+                        <form th:action="@{players/findplayerusername}" autocomplete="off" method="post">
+                            <div class="input-group mb-3">
+                                <input type="text" name="email" class="form-control" placeholder="Players's Username" aria-label="Recipient's username" aria-describedby="button-addon2">
+                                <button class="btn btn-info" type="submit" id="button-addon2">Find</button>
+                            </div>
+                        </form>
+                        <div th:if="${user_not_found}">
+                            <p class="text-warning" th:text="${user_not_found}"></p>
                         </div>
-                    </form>
-                    <div th:if="${user_not_found}">
-                        <p class="text-warning" th:text="${user_not_found}"></p>
+                        <div th:if="${user}">
+                            <table class="table table-light text-dark">
+                                <thead>
+                                <tr>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Email</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td th:text="${user.firstName}"></td>
+                                    <td th:text="${user.lastName}"></td>
+                                    <th scope="row" th:text="${user.email}"></th>
+                                </tr>
+                                </tbody>
+                                <tbody>
+                            </table>
+                        </div>
                     </div>
-                    <div th:if="${user}">
-                        <table class="table table-light">
+                </div>
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-10">
+                        <div th:if="${message}">
+                            <p class="text-warning" th:text="${message}"></p>
+                        </div>
+                        <table class="table table-light text-dark">
                             <thead>
-                            <tr>
-                                <th scope="col">First Name</th>
-                                <th scope="col">Last Name</th>
-                                <th scope="col">Email</th>
-                            </tr>
+                                <tr>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Total Winnings</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td th:text="${user.firstName}"></td>
-                                <td th:text="${user.lastName}"></td>
-                                <th scope="row" th:text="${user.email}"></th>
-                            </tr>
-                            </tbody>
-                            <tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="row gx-5 justify-content-center">
-                <div class="col-lg-10">
-                    <h1 class="text-white">Players List</h1>
-                    <div th:if="${message}">
-                        <p class="text-warning" th:text="${message}"></p>
-                    </div>
-                    <table class="table table-dark">
-                        <thead>
-                        <tr>
-                            <th scope="col">First Name</th>
-                            <th scope="col">Last Name</th>
-                            <th scope="col">Email</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="player: ${players}">
-                                <td th:text="${player.firstName}"></td>
-                                <td th:text="${player.lastName}"></td>
-                                <th scope="row" th:text="${player.email}"></th>
-                                <td th:text="${player.winner}"></td>
-                                </td>
-                            </tr>
+                                <tr th:each="player: ${players}">
+                                    <td scope="row" th:text="${player.firstName}"></td>
+                                    <td th:text="${player.lastName}"></td>
+                                    <th th:text="${player.email}"></th>
+                                    <th th:text="${#numbers.formatCurrency(player.totalWinnings)}"></th>
+                                </tr>
                             </tbody>
                         </table>
+                        <div class="add-player-button">
+                            <a class="nav-link" th:href="@{/players/playerform}"><button class="btn btn-primary" type="submit" id="add-button">Add New Winner</button></a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
+    </section>
 
 
 <!-- Footer-->
