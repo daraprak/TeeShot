@@ -1,12 +1,9 @@
 package com.daraprak.TeeShot;
 
 import com.daraprak.TeeShot.dao.TournamentRepository;
-import com.daraprak.TeeShot.models.Course;
-import com.daraprak.TeeShot.models.Winner;
-import com.daraprak.TeeShot.models.TeeTime;
-import com.daraprak.TeeShot.models.Tournament;
+import com.daraprak.TeeShot.models.*;
 import com.daraprak.TeeShot.services.CourseService;
-import com.daraprak.TeeShot.services.WinnerService;
+import com.daraprak.TeeShot.services.PlayerService;
 import com.daraprak.TeeShot.services.TeeTimeService;
 import com.daraprak.TeeShot.services.TournamentService;
 import lombok.AccessLevel;
@@ -26,7 +23,7 @@ import java.time.Month;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ApplicationCommandLineRunner implements CommandLineRunner {
 
-    WinnerService winnerService;
+    PlayerService playerService;
     TournamentService tournamentService;
     TournamentRepository tournamentRepository;
     CourseService courseService;
@@ -42,8 +39,8 @@ public class ApplicationCommandLineRunner implements CommandLineRunner {
     static final LocalTime TIME = LocalTime.of(6,00);
 
     @Autowired
-    public ApplicationCommandLineRunner(WinnerService winnerService, TournamentService tournamentService, TournamentRepository tournamentRepository, CourseService courseService, TeeTimeService teeTimeService) {
-        this.winnerService = winnerService;
+    public ApplicationCommandLineRunner(PlayerService playerService, TournamentService tournamentService, TournamentRepository tournamentRepository, CourseService courseService, TeeTimeService teeTimeService) {
+        this.playerService = playerService;
         this.tournamentService = tournamentService;
         this.tournamentRepository = tournamentRepository;
         this.courseService = courseService;
@@ -58,11 +55,17 @@ public class ApplicationCommandLineRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        winnerService.saveOrUpdate(new Winner(DARAID, "Dara", "Prak", PASSWORD, true,20000));
-        winnerService.saveOrUpdate(new Winner(MICHAELID, "Michael", "Scott", PASSWORD, true, 15000));
-        winnerService.saveOrUpdate(new Winner(DWIGHTID, "Dwight", "Schrute", PASSWORD, false));
-        winnerService.saveOrUpdate(new Winner(JIMID, "Jim", "Halpert", PASSWORD, true, 11000));
-        winnerService.saveOrUpdate(new Winner(DARRYLID, "Darryl", "Philbin", PASSWORD, false));
+        playerService.saveOrUpdate(new Player(DARAID, "Dara", "Prak", PASSWORD, true,20000));
+        playerService.saveOrUpdate(new Player(MICHAELID, "Michael", "Scott", PASSWORD, true, 15000));
+        playerService.saveOrUpdate(new Player(DWIGHTID, "Dwight", "Schrute", PASSWORD, false));
+        playerService.saveOrUpdate(new Player(JIMID, "Jim", "Halpert", PASSWORD, true, 11000));
+        playerService.saveOrUpdate(new Player(DARRYLID, "Darryl", "Philbin", PASSWORD, false));
+
+//        authGroupRepository.save(new AuthGroup(DARAID, ROLE_ADMIN));
+//        authGroupRepository.save(new AuthGroup(MICHAELID, ROLE_ADMIN));
+//        authGroupRepository.save(new AuthGroup(DWIGHTID, ROLE_USER));
+//        authGroupRepository.save(new AuthGroup(JIMID, ROLE_USER));
+//        authGroupRepository.save(new AuthGroup(DARRYLID, ROLE_USER));
 
         tournamentService.saveUpdateTournament(new Tournament(LocalDate.of(2022, Month.JUNE, 12), "Cave Creek Open","Cave Creek Golf Course", 12000));
         tournamentService.saveUpdateTournament(new Tournament(LocalDate.of(2022, Month.JUNE, 29), "Talking Stick Championship", "Talking Stick Golf Club", 20000));

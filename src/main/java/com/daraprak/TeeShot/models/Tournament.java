@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @AllArgsConstructor
@@ -25,7 +26,7 @@ public class Tournament {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     @NonNull
-    String date;
+    LocalDate date;
     @NonNull
     String name;
     @NonNull
