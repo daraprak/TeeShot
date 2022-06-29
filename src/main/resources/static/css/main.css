@@ -48,6 +48,13 @@ button:hover {
   position: static;
 }
 
+.persist {
+    border: 1px solid black;
+    background: black;
+    color: white;
+    text-align: center;
+}
+
     /* Index Page */
 
 header .container {

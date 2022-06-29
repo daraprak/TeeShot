@@ -3,6 +3,7 @@ package com.daraprak.TeeShot.models;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -26,6 +27,7 @@ public class Player {
     @NonNull
     String lastName;
     @NonNull
+    @Setter(AccessLevel.NONE)
     String password;
     @NonNull
     boolean winner = false;
@@ -36,7 +38,7 @@ public class Player {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.password = password;
+        this.password = new BCryptPasswordEncoder().encode(password);
         this.winner = winner;
     }
 
@@ -44,9 +46,13 @@ public class Player {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.password = password;
+        this.password = new BCryptPasswordEncoder().encode(password);
         this.winner = winner;
         this.totalWinnings = totalWinnings;
+    }
+
+    public void setPassword(String password) {
+        this.password = new BCryptPasswordEncoder().encode(password);
     }
 
     @Override

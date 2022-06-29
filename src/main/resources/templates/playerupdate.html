@@ -19,8 +19,8 @@
                 </div>
                 <div class="row gx-5 justify-content-center">
                     <div class="col-lg-5">
-                        <p th:if="${player.email ne null}" class="text-warning">Persisted!</p>
-                        <form th:action="@{players/playerupdate}"  autocomplete="off" method="post">
+                        <p th:if="${player.email ne null}" class="persist">Persisted!</p>
+                        <form th:action="@{/players/saveupdateplayer}" id="player-form" autocomplete="off" method="POST">
                             <div class="input-group mb-3">
                                 <input type="text" name="email" class="form-control" placeholder="Winner's Email" th:field="*{player.email}" />
                             </div>

@@ -19,9 +19,10 @@
                 </div>
                 <div class="row gx-5 justify-content-center">
                     <div class="col-lg-5">
-                        <form th:action="@{/players/playerform}"  autocomplete="off" method="POST">
+                        <p th:if="${tournament.name ne null}" class="persist">Persisted!</p>
+                        <form th:action="@{/tournaments/saveupdatetournament}"  autocomplete="off" method="POST">
                             <div class="input-group mb-3">
-                                <input type="text" name="date" class="form-control" placeholder="Tournament Date" th:field="*{tournament.date}" />
+                                <input type="text" name="date" class="form-control" placeholder="YYYY-MM-DD" th:field="*{tournament.date}" />
                             </div>
                             <div class="input-group mb-3">
                                 <input type="text" name="name" class="form-control" placeholder="Tournament Name" th:field="*{tournament.name}" />

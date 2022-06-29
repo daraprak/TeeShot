@@ -42,8 +42,8 @@ public class PlayerController {
 
     @GetMapping(value = "/playerform")
     public String playerForm(Model model) {
-        model.addAttribute("winner", new Player());
-        return "/playerupdate";
+        model.addAttribute("player", new Player());
+        return "playerupdate";
     }
 
     @PostMapping("/saveupdateplayer")

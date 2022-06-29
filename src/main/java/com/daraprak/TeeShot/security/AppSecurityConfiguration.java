@@ -56,11 +56,12 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.
                 csrf().disable().
                 authorizeRequests().
-                antMatchers("/","/index").permitAll().
+                antMatchers("/","/index", "/about", "/register", "/contact").permitAll().
 
                 antMatchers("/tournaments").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER").
                 antMatchers("/tournaments/**").hasAnyAuthority("ROLE_ADMIN").
-                antMatchers("/players","/players/**").hasAnyAuthority("ROLE_ADMIN").
+                antMatchers("/players").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER").
+                antMatchers("/players/**").hasAuthority("ROLE_ADMIN").
                 anyRequest().authenticated().
                 and().
                 formLogin().loginPage("/login").usernameParameter("username").passwordParameter("password").

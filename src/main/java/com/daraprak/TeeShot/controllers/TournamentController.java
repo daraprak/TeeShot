@@ -48,10 +48,10 @@ public class TournamentController {
 
     @PostMapping("/saveupdatetournament")
     public String saveUpdateTournament(RedirectAttributes model, @ModelAttribute("tournament") Tournament tournament) {
-        log.warn("Tournament tournament: " + tournament);
+        log.warn("Model tournament: " + tournament);
         tournamentService.saveUpdateTournament(tournament);
         model.addFlashAttribute("tournament", tournamentService.findById(tournament.getId()));
-        return "courseupdate";
+        return "tournamentupdate";
     }
 
 }
