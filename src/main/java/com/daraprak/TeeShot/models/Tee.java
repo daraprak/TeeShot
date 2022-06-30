@@ -40,12 +40,19 @@ public class Tee {
         this.date = date;
     }
 
+    public Tee(int id, String name, int golfers, LocalDate date) {
+        this.id = id;
+        this.name = name;
+        this.golfers = golfers;
+        this.date = date;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Tee tee = (Tee) o;
-        return id == tee.id && golfers == tee.golfers && name.equals(tee.name) && date.equals(tee.date);
+        return golfers == tee.golfers && name.equals(tee.name) && date.equals(tee.date);
     }
 
     @Override

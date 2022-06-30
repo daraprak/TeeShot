@@ -8,7 +8,9 @@ import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.LinkedHashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -33,6 +35,9 @@ public class Tournament {
     String course;
     @NonNull
     double purse;
+
+    @ManyToMany(mappedBy = "tournaments", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH} , fetch = FetchType.EAGER)
+    private Set<Player> players = new LinkedHashSet<>();
 
     @Override
     public boolean equals(Object o) {

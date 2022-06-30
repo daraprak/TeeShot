@@ -32,10 +32,6 @@ public class PlayerService {
         this.teeRepository = teeRepository;
     }
 
-    public List<Player> findAll() {
-        return playerRepository.findAll();
-    }
-
     public List<Player> findAllPlayers() {
         return playerRepository.findAllPlayers();
     }

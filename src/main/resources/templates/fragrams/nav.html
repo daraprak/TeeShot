@@ -57,9 +57,6 @@
                             <a class="nav-link" th:href="@{/register}">Sign Up</a>
                         </li>
                     </span>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/contact}">Contact Us</a>
-                    </li>
                     <span sec:authorize="isAuthenticated()">
                         <li class="nav-item">
                             <a class="nav-link" th:href="@{/logout}">Log Out</a>

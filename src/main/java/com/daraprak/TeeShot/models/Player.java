@@ -32,7 +32,7 @@ public class Player {
     @Setter(AccessLevel.NONE)
     String password;
     @NonNull
-    boolean winner = false;
+    boolean winner;
     @NonNull
     double totalWinnings;
 
@@ -41,6 +41,12 @@ public class Player {
             joinColumns = @JoinColumn(name = "player_email"),
             inverseJoinColumns = @JoinColumn(name = "tee_times_id"))
     private Set<Tee> tees = new LinkedHashSet<>();
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH}, fetch = FetchType.EAGER)
+    @JoinTable(name = "players_tournaments",
+            joinColumns = @JoinColumn(name = "player_email"),
+            inverseJoinColumns = @JoinColumn(name = "tournaments_id"))
+    private Set<Tournament> tournaments = new LinkedHashSet<>();
 
 
     public Player(@NonNull String email, @NonNull String firstName, @NonNull String lastName, @NonNull String password, @NonNull boolean winner) {
