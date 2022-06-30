@@ -6,49 +6,52 @@ import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@RequiredArgsConstructor
 @Getter
 @Setter
 @ToString
 @Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "teetimes")
-public class TeeTime {
+@Table(name = "tees")
+public class Tee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     @NonNull
+    String name;
+    @NonNull
+    int golfers;
+    @NonNull
     LocalDate date;
-    LocalTime time;
 
-    @ManyToMany(mappedBy = "teeTimes", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH}, fetch = FetchType.EAGER)
-    private Set<Course> courses = new LinkedHashSet<>();
+    @ManyToMany(mappedBy = "tees", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH}, fetch = FetchType.EAGER)
+    private Set<Player> players = new LinkedHashSet<>();
 
-    public TeeTime(LocalDate date, LocalTime time) {
+    public Tee(String name, int golfers, LocalDate date) {
+        this.name = name;
+        this.golfers = golfers;
         this.date = date;
-        this.time = time;
     }
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        TeeTime teeTime = (TeeTime) o;
-        return id == teeTime.id && date.equals(teeTime.date) && time.equals(teeTime.time);
+        Tee tee = (Tee) o;
+        return id == tee.id && golfers == tee.golfers && name.equals(tee.name) && date.equals(tee.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, date, time);
+        return Objects.hash(id, name, golfers, date);
     }
 
 }

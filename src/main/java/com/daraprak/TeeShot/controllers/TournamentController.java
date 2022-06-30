@@ -1,7 +1,5 @@
 package com.daraprak.TeeShot.controllers;
 
-import com.daraprak.TeeShot.dao.PlayerRepository;
-import com.daraprak.TeeShot.dao.TournamentRepository;
 import com.daraprak.TeeShot.models.Tournament;
 import com.daraprak.TeeShot.services.PlayerService;
 import com.daraprak.TeeShot.services.TournamentService;
@@ -21,16 +19,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class TournamentController {
 
     PlayerService playerService;
-    PlayerRepository playerRepository;
     TournamentService tournamentService;
-    TournamentRepository tournamentRepository;
 
     @Autowired
-    public TournamentController(PlayerService playerService, PlayerRepository playerRepository, TournamentService tournamentService, TournamentRepository tournamentRepository) {
+    public TournamentController(PlayerService playerService, TournamentService tournamentService) {
         this.playerService = playerService;
-        this.playerRepository = playerRepository;
         this.tournamentService = tournamentService;
-        this.tournamentRepository = tournamentRepository;
     }
 
     @GetMapping

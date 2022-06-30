@@ -22,13 +22,16 @@
                         <p th:if="${player.email ne null}" class="persist">Persisted!</p>
                         <form th:action="@{/players/saveupdateplayer}" id="player-form" autocomplete="off" method="POST">
                             <div class="input-group mb-3">
-                                <input type="text" name="email" class="form-control" placeholder="Winner's Email" th:field="*{player.email}" />
+                                <input type="text" name="email" class="form-control" placeholder="Email" th:field="*{player.email}" />
                             </div>
                             <div class="input-group mb-3">
-                                <input type="text" name="firstName" class="form-control" placeholder="Winner's First Name" th:field="*{player.firstName}" />
+                                <input type="text" name="firstName" class="form-control" placeholder="First Name" th:field="*{player.firstName}" />
                             </div>
                             <div class="input-group mb-3">
-                                <input type="text" name="lastName" class="form-control" placeholder="Winner's Last Name" th:field="*{player.lastName}" />
+                                <input type="text" name="lastName" class="form-control" placeholder="Last Name" th:field="*{player.lastName}" />
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="text" name="password" class="form-control" placeholder="Password" th:field="*{player.password}" />
                             </div>
                             <div class="input-group mb-3">
                                 <input type="text" name="totalWinnings" class="form-control" placeholder="Total Winnings" th:field="*{player.totalWinnings}" />

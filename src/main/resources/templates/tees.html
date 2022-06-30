@@ -1,0 +1,51 @@
+<!DOCTYPE html>-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <!-- Header -->
+    <div th:replace="fragrams/header :: header" />
+<body>
+
+    <!-- Navbar -->
+    <div th:replace="fragrams/nav :: nav" />
+
+     <section class="tournaments vh-100 py-5 my-5 bg-light">
+        <div class="bg-image container px-5 vh-100">
+          <div class="container px-5 vh-100">
+            <div class="row gx-5 justify-content-center">
+              <div class="col-lg-8">
+                <div class="text-center my-5">
+                  <h1 class="display-4 fw-bolder text-light mb-2">Tee Times</h1>
+                </div>
+              </div>
+            </div>
+            <div class="row gx-5 justify-content-center">
+              <div class="col-lg-12">
+                <table class="table table-light text-dark">
+                  <thead>
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Course</th>
+                    <th scope="col">Players</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr th:each="tee: ${tees}">
+                    <th scope="row" th:text="${tee.date}"></th>
+                    <td scope="row" th:text="${tee.name}"></td>
+                    <td scope="row" th:text="${tee.golfers}"></td>
+                  </tr>
+                  </tbody>
+                </table>
+                <div class="add-tee-button">
+                  <a class="nav-link" th:href="@{/tees/teeform}"><button class="btn btn-primary" type="submit" id="add-button">Book New Tee Time</button></a>
+                </div>
+              </div>
+           </div>
+         </div>
+       </div>
+    </section>
+
+    <!-- Footer -->
+    <div th:replace="fragrams/footer :: footer"/>
+
+</body>
+</html>

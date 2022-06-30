@@ -6,7 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
+import java.util.LinkedHashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @NoArgsConstructor
 @RequiredArgsConstructor
@@ -33,6 +35,13 @@ public class Player {
     boolean winner = false;
     @NonNull
     double totalWinnings;
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH}, fetch = FetchType.EAGER)
+    @JoinTable(name = "players_tee_times",
+            joinColumns = @JoinColumn(name = "player_email"),
+            inverseJoinColumns = @JoinColumn(name = "tee_times_id"))
+    private Set<Tee> tees = new LinkedHashSet<>();
+
 
     public Player(@NonNull String email, @NonNull String firstName, @NonNull String lastName, @NonNull String password, @NonNull boolean winner) {
         this.email = email;

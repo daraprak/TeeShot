@@ -1,6 +1,7 @@
 package com.daraprak.TeeShot.services;
 
 import com.daraprak.TeeShot.dao.PlayerRepository;
+import com.daraprak.TeeShot.dao.TeeRepository;
 import com.daraprak.TeeShot.dao.TournamentRepository;
 import com.daraprak.TeeShot.models.Player;
 import lombok.AccessLevel;
@@ -22,11 +23,13 @@ public class PlayerService {
 
     PlayerRepository playerRepository;
     TournamentRepository tournamentRepository;
+    TeeRepository teeRepository;
 
     @Autowired
-    public PlayerService(PlayerRepository playerRepository, TournamentRepository tournamentRepository) {
+    public PlayerService(PlayerRepository playerRepository, TournamentRepository tournamentRepository, TeeRepository teeRepository) {
         this.playerRepository = playerRepository;
         this.tournamentRepository = tournamentRepository;
+        this.teeRepository = teeRepository;
     }
 
     public List<Player> findAll() {

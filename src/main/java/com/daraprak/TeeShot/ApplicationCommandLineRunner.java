@@ -3,9 +3,8 @@ package com.daraprak.TeeShot;
 import com.daraprak.TeeShot.dao.AuthGroupRepository;
 import com.daraprak.TeeShot.dao.TournamentRepository;
 import com.daraprak.TeeShot.models.*;
-import com.daraprak.TeeShot.services.CourseService;
 import com.daraprak.TeeShot.services.PlayerService;
-import com.daraprak.TeeShot.services.TeeTimeService;
+import com.daraprak.TeeShot.services.TeeService;
 import com.daraprak.TeeShot.services.TournamentService;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.Month;
 
 @Component
@@ -24,11 +22,10 @@ import java.time.Month;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ApplicationCommandLineRunner implements CommandLineRunner {
 
+    TeeService teeService;
     PlayerService playerService;
     TournamentService tournamentService;
     TournamentRepository tournamentRepository;
-    CourseService courseService;
-    TeeTimeService teeTimeService;
     AuthGroupRepository authGroupRepository;
 
     static final String PASSWORD = "password";
@@ -37,18 +34,16 @@ public class ApplicationCommandLineRunner implements CommandLineRunner {
     static final String DWIGHTID = "dwight@gmail.com";
     static final String JIMID = "jim@gmail.com";
     static final String DARRYLID = "darryl@gmail.com";
-    static final LocalDate TODAY = LocalDate.now();
-    static final LocalTime TIME = LocalTime.of(6,00);
     static final  String ROLE_ADMIN = "ROLE_ADMIN";
     static final  String ROLE_USER = "ROLE_USER";
+    static final LocalDate DATE = LocalDate.now();
 
     @Autowired
-    public ApplicationCommandLineRunner(PlayerService playerService, TournamentService tournamentService, TournamentRepository tournamentRepository, CourseService courseService, TeeTimeService teeTimeService, AuthGroupRepository authGroupRepository) {
+    public ApplicationCommandLineRunner(PlayerService playerService, TournamentService tournamentService, TournamentRepository tournamentRepository, TeeService teeService, AuthGroupRepository authGroupRepository) {
         this.playerService = playerService;
         this.tournamentService = tournamentService;
         this.tournamentRepository = tournamentRepository;
-        this.courseService = courseService;
-        this.teeTimeService = teeTimeService;
+        this.teeService = teeService;
         this.authGroupRepository = authGroupRepository;
     }
 
@@ -78,14 +73,17 @@ public class ApplicationCommandLineRunner implements CommandLineRunner {
         tournamentService.saveUpdateTournament(new Tournament(LocalDate.of(2022, Month.AUGUST, 5), "GCU Championship", "Grand Canyon University Championship Golf Course", 16000));
         tournamentService.saveUpdateTournament(new Tournament(LocalDate.of(2022, Month.AUGUST, 27), "Aguila Open", "Aguila Golf Course", 11500));
 
-        courseService.saveOrUpdate(new Course("Desert Mirage Golf Course", 4, 35));
-        courseService.saveOrUpdate(new Course("Peoria Pines Golf Course", 3, 40));
-        courseService.saveOrUpdate(new Course("Cave Creek Golf Course", 4, 60));
-        courseService.saveOrUpdate(new Course("Encanto Golf Course", 2, 35));
-
-        teeTimeService.saveOrUpdate(new TeeTime(TODAY, TIME));
-        teeTimeService.saveOrUpdate(new TeeTime(TODAY, TIME.plusHours(1)));
-        teeTimeService.saveOrUpdate(new TeeTime(TODAY, TIME.plusHours(2)));
+        teeService.saveOrUpdate(new Tee("Cave Creek", 4, DATE));
+        teeService.saveOrUpdate(new Tee("Cave Creek", 3, DATE));
+        teeService.saveOrUpdate(new Tee("Cave Creek", 1, DATE));
+        teeService.saveOrUpdate(new Tee("Cave Creek", 4, DATE.plusDays(2)));
+        teeService.saveOrUpdate(new Tee("Desert Mirage", 2, DATE));
+        teeService.saveOrUpdate(new Tee("Desert Mirage", 4, DATE));
+        teeService.saveOrUpdate(new Tee("Peoria Pines", 1, DATE.plusDays(2)));
+        teeService.saveOrUpdate(new Tee("Peoria Pines", 4, DATE.plusDays(2)));
+        teeService.saveOrUpdate(new Tee("Peoria Pines", 2, DATE.plusDays(3)));
+        teeService.saveOrUpdate(new Tee("Peoria Pines", 4, DATE.plusDays(5)));
+        teeService.saveOrUpdate(new Tee("Encanto", 2, DATE));
 
     }
 
