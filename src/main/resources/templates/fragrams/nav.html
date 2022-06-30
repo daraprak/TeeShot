@@ -47,12 +47,16 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/login}">Log In</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/register}">Sign Up</a>
-                    </li>
+                    <span th:block sec:authorize="!isAuthenticated()">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/login}">Log In</a>
+                        </li>
+                    </span>
+                    <span th:block sec:authorize="!isAuthenticated()">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/register}">Sign Up</a>
+                        </li>
+                    </span>
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/contact}">Contact Us</a>
                     </li>

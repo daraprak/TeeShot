@@ -40,7 +40,6 @@ public class Tee {
         this.date = date;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

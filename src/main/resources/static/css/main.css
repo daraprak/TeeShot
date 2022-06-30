@@ -330,3 +330,16 @@ card-img-top {
     text-align: center
 }
 
+    /* 403 Page */
+
+section .bg-image {
+    background-image: url("/images/golfbackground.jpg");
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
