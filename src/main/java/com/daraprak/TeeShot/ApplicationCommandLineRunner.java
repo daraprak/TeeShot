@@ -73,17 +73,10 @@ public class ApplicationCommandLineRunner implements CommandLineRunner {
         tournamentService.saveUpdateTournament(new Tournament(LocalDate.of(2022, Month.AUGUST, 5), "GCU Championship", "Grand Canyon University Championship Golf Course", 16000));
         tournamentService.saveUpdateTournament(new Tournament(LocalDate.of(2022, Month.AUGUST, 27), "Aguila Open", "Aguila Golf Course", 11500));
 
-        teeService.saveOrUpdate(new Tee("Cave Creek", 4, DATE));
-        teeService.saveOrUpdate(new Tee("Cave Creek", 3, DATE));
-        teeService.saveOrUpdate(new Tee("Cave Creek", 1, DATE));
-        teeService.saveOrUpdate(new Tee("Cave Creek", 4, DATE.plusDays(2)));
-        teeService.saveOrUpdate(new Tee("Desert Mirage", 2, DATE));
-        teeService.saveOrUpdate(new Tee("Desert Mirage", 4, DATE));
-        teeService.saveOrUpdate(new Tee("Peoria Pines", 1, DATE.plusDays(2)));
-        teeService.saveOrUpdate(new Tee("Peoria Pines", 4, DATE.plusDays(2)));
-        teeService.saveOrUpdate(new Tee("Peoria Pines", 2, DATE.plusDays(3)));
-        teeService.saveOrUpdate(new Tee("Peoria Pines", 4, DATE.plusDays(5)));
-        teeService.saveOrUpdate(new Tee("Encanto", 2, DATE));
+        teeService.saveOrUpdate(new Tee("Cave Creek Golf Course", 4, DATE));
+        teeService.saveOrUpdate(new Tee("Cave Creek Golf Course", 3, DATE.plusDays(2)));
+        teeService.saveOrUpdate(new Tee("Peoria Pines Golf Course", 2, DATE.plusDays(3)));
+        teeService.saveOrUpdate(new Tee("Desert Mirage Golf Course", 4, DATE.plusDays(5)));
 
     }
 

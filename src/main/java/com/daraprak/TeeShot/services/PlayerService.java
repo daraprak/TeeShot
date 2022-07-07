@@ -49,5 +49,4 @@ public class PlayerService {
     public void isWinner(Player player) {
         player.setWinner(true);
     }
-
 }

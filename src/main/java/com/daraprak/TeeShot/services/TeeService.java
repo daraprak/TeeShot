@@ -43,4 +43,11 @@ public class TeeService {
         return teeRepository.findById(id).orElseThrow();
     }
 
+    public Tee getTeeById(int id) {
+        return teeRepository.findById(id).orElseThrow();
+    }
+
+    public void deleteTee(int id) {
+        teeRepository.deleteById(id);
+    }
 }

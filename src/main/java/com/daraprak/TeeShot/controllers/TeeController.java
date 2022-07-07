@@ -12,6 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
+
 @Controller
 @Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -20,6 +24,8 @@ public class TeeController {
 
     PlayerService playerService;
     TeeService teeService;
+
+    LocalDate today = LocalDate.now();
 
 
     @Autowired
@@ -37,6 +43,16 @@ public class TeeController {
     @GetMapping(value = "/teeform")
     public String teeTimeForm(Model model) {
         model.addAttribute("tee", new Tee());
+
+        List<String> courseList = Arrays.asList("Cave Creek Golf Course", "Desert Mirage Golf Course", "Encanto Golf Course", "Peoria Pines Golf Course");
+        model.addAttribute("courseList", courseList);
+
+        List<LocalDate> dateList = Arrays.asList(today, today.plusDays(1), today.plusDays(2), today.plusDays(3), today.plusDays(4), today.plusDays(5), today.plusDays(6));
+        model.addAttribute("dateList", dateList);
+
+        List<Integer> golferList = Arrays.asList(1, 2, 3, 4);
+        model.addAttribute("golferList", golferList);
+
         return "teeupdate";
     }
 
@@ -46,6 +62,12 @@ public class TeeController {
         teeService.saveOrUpdate(tee);
         model.addFlashAttribute("tee", teeService.findById(tee.getId()));
         return "teeupdate";
+    }
+
+    @GetMapping("/deletetee/{id}")
+    public String deleteTee(@PathVariable(value = "id") int id) {
+        teeService.deleteTee(id);
+        return "redirect:/tees";
     }
 
 }

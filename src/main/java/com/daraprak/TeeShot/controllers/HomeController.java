@@ -27,7 +27,7 @@ public class HomeController {
     }
 
     @GetMapping("/register")
-    public String register() {
+    public String registrationForm() {
         return "register";
     }
 

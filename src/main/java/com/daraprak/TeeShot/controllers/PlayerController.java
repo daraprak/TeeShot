@@ -1,6 +1,7 @@
 package com.daraprak.TeeShot.controllers;
 
 import com.daraprak.TeeShot.models.Player;
+import com.daraprak.TeeShot.models.Tournament;
 import com.daraprak.TeeShot.services.PlayerService;
 import com.daraprak.TeeShot.services.TournamentService;
 import lombok.AccessLevel;
@@ -12,6 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Controller
 @Slf4j
@@ -29,7 +33,7 @@ public class PlayerController {
     }
 
     @GetMapping
-    public String getAllPlayerss(Model model) {
+    public String getAllPlayers(Model model) {
         model.addAttribute("players", playerService.findAllPlayers());
         return "players";
     }

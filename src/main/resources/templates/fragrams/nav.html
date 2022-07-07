@@ -20,17 +20,11 @@
                         <a class="nav-link" th:href="@{/about}">About Us</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tournaments</a>
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tee Times</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li class="nav-item">
                                 <a class="nav-link" th:href="@{/tees}">Tee Times List</a>
                             </li>
-                            <li>
-                                <hr class="dropdown-divider" />
-                            </li>
-<!--                            <li class="nav-item">-->
-<!--                                <a class="nav-link" th:href="@{/testing}">Tee Times</a>-->
-<!--                            </li>-->
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -50,11 +44,6 @@
                     <span th:block sec:authorize="!isAuthenticated()">
                         <li class="nav-item">
                             <a class="nav-link" th:href="@{/login}">Log In</a>
-                        </li>
-                    </span>
-                    <span th:block sec:authorize="!isAuthenticated()">
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/register}">Sign Up</a>
                         </li>
                     </span>
                     <span sec:authorize="isAuthenticated()">

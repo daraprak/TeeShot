@@ -19,7 +19,7 @@
                 </div>
                 <div class="row gx-5 justify-content-center">
                     <div class="col-lg-5">
-                        <p th:if="${tournament.name ne null}" class="persist">Persisted!</p>
+                        <p th:if="${tournament.name ne null}" class="persist">Tournament Saved!</p>
                         <form th:action="@{/tournaments/saveupdatetournament}"  autocomplete="off" method="POST">
                             <div class="input-group mb-3">
                                 <input type="text" name="date" class="form-control" placeholder="YYYY-MM-DD" th:field="*{tournament.date}" />
@@ -37,6 +37,9 @@
                                 <button class="btn btn-primary" type="submit" id="button-addon2">Submit</button>
                             </div>
                         </form>
+                        <div class="update-player-button">
+                            <a class="nav-link" th:href="@{/tournaments}"><button class="btn btn-secondary" type="submit" id="button-addon3">Back</button></a>
+                        </div>
                     </div>
                 </div>
             </div>

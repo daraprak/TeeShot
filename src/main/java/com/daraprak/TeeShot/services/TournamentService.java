@@ -42,15 +42,11 @@ public class TournamentService {
         tournamentRepository.save(tournament);
     }
 
-    public void deleteTournament(Tournament tournament) {
-        tournamentRepository.delete(tournament);
+    public void deleteTournament(int id) {
+        tournamentRepository.deleteById(id);
     }
 
-
-//    public Tournament findTournamentByName(String name) {
-//        return tournamentRepository.findByName(name).orElseThrow();
-//    }
-
-
-
+    public List<Tournament> findTournamentByName(String name) {
+        return tournamentRepository.findByName(name);
+    }
 }

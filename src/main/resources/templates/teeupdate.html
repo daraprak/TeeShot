@@ -7,7 +7,7 @@
     <!-- Navbar -->
     <div th:replace="fragrams/nav :: nav" />
 
-    <section class="winners vh-100 py-5 my-5 bg-light">
+    <section class="teetimes vh-100 py-5 my-5 bg-light">
         <div class="container px-5 vh-100">
             <div class="row gx-5 justify-content-center">
                 <div class="col-lg-8">
@@ -18,24 +18,33 @@
             </div>
             <div class="row gx-5 justify-content-center">
                 <div class="col-lg-5">
-                    <p th:if="${tee.name ne null}" class="persist">Persisted!</p>
+                    <p th:if="${tee.name ne null}" class="persist">Tee Time Saved!</p>
                     <form class="mt-5" th:action="@{/tees/saveupdatetee}"  autocomplete="off" method="POST">
-                        <div class="input-group mb-3">
-                            <label class="form-label text-dark mr-3">Enter Course Name</label>
-                            <input type="text" name="name" placeholder="Cave Creek Golf Course" class="form-control" th:field="*{tee.name}"/>
+                        <div class="form-group">
+                            <label class="form-label text-dark mr-3">Course Name</label>
+                            <select name="course" th:field="*{tee.name}">
+                                <option th:each="course: ${courseList}" th:text="${course}" th:value="${course}"></option>
+                            </select>
                         </div>
-                        <div class="input-group mb-3">
-                            <label class="form-label text-dark mr-3">Enter Date</label>
-                            <input type="text" name="date" class="form-control" placeholder="yyyy-MM-dd" th:field="*{tee.date}"/>
+                        <div class="form-group">
+                            <label class="form-label text-dark mr-3">Date</label>
+                            <select name="date" th:field="*{tee.date}">
+                                <option th:each="date: ${dateList}" th:text="${date}" th:value="${date}"></option>
+                            </select>
                         </div>
-                        <div class="input-group mb-3">
+                        <div class="form-group">
                             <label class="form-label text-dark mr-3">Number of Players</label>
-                            <input type="text" name="date" class="form-control" placeholder="1-4" th:field="*{tee.golfers}"/>
+                            <select name="golfers" th:field="*{tee.golfers}">
+                                <option th:each="golfers: ${golferList}" th:text="${golfers}" th:value="${golfers}"></option>
+                            </select>
                         </div>
                         <div class="update-player-button">
-                            <button class="btn btn-primary" type="submit" id="button-addon2">Submit</button>
+                            <button class="btn btn-info" type="submit" id="button-addon2">Save</button>
                         </div>
                     </form>
+                    <div class="update-player-button">
+                        <a class="nav-link" th:href="@{/tees}"><button class="btn btn-secondary" type="submit" id="button-addon3">Back</button></a>
+                    </div>
                 </div>
             </div>
         </div>

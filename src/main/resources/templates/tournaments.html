@@ -35,6 +35,12 @@
                                 <td scope="row" th:text="${tournament.name}"></td>
                                 <td scope="row" th:text="${tournament.course}"></td>
                                 <td scope="row" th:text="${#numbers.formatCurrency(tournament.purse)}"></td>
+                                <td>
+                                    <a th:href="@{/tournaments/tournamentform}" class="btn btn-info">Update</a>
+                                </td>
+                                <td>
+                                    <a th:href="@{/tournaments/deletetournament/{id}(id=${tournament.id})}" class="btn btn-danger">Delete</a>
+                                </td>
                             </tr>
                             </tbody>
                         </table>
